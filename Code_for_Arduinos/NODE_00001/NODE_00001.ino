@@ -178,7 +178,7 @@ void setup()
   double test1 = 50.015;
   int x = 100;
   Serial.println(test1 - x, 4);
-  
+
   // Serial.print(int(sizeof(transmit_data)));
   // Serial.print(" ");
   // Serial.println(int(sizeof(transmit_data2)));
