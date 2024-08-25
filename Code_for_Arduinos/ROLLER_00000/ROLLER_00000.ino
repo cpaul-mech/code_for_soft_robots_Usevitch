@@ -37,7 +37,7 @@ void radio_transmit();
 void setup() {
     Serial.begin(9600);
 
-    init_radio();
+    //init_radio();
 
     // Set parent state to wait for data from serial
     parent_state = SERIAL_RECEIVE;
@@ -116,6 +116,7 @@ void serial_receive() {
         while (end_index > 0) {
             String number_substring = incoming_data_str.substring(start_index, end_index);  // grabs the substring at start_index inclusive and ends at end_index exclusive
             int16_t number = number_substring.toInt();
+            Serial.println(number);
 
             tx_data[tx_data_index++] = number;
 
@@ -132,6 +133,7 @@ void serial_receive() {
         if (tx_data_index < MAX_SERIAL_DATA_NUM && start_index < incoming_data_str.length()) {
             String number_substring = incoming_data_str.substring(start_index);  // grabs the substring at start_index inclusive till end of string
             int16_t number = number_substring.toInt();
+            Serial.println(number);
 
             tx_data[tx_data_index++] = number;
         }
@@ -153,7 +155,9 @@ void radio_transmit() {
 
     for (int i = 0; i < tx_data_index; i++) {
         checksum += tx_data[i];
-        Serial.print(i + ": " + tx_data[i]);
+        Serial.print(i);
+        Serial.print(": ");
+        Serial.print(tx_data[i]);
 
         if (i < tx_data_index - 1) {
             Serial.print(", ");
@@ -161,7 +165,8 @@ void radio_transmit() {
     }
 
     Serial.println();
-    Serial.println("Checksum: " + checksum);
+    Serial.print("Checksum: ");
+    Serial.println(checksum);
     Serial.println();
 
     parent_state = SERIAL_RECEIVE;
