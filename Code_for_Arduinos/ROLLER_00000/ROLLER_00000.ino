@@ -78,14 +78,9 @@ void loop() {
             break;
         case CALC_CHECKSUM:
             tx_data[MAX_SERIAL_DATA_NUM] = calculate_checksum(tx_data, MAX_SERIAL_DATA_NUM);
-
-            for (int i = 0; i < MAX_SERIAL_DATA_NUM + 1; i++) {
-                Serial.print(tx_data[i]);
-                Serial.print(", ");
-            }
-
-            Serial.println();
             self.state = TRANSMITTING;
+            break;
+            
         case TRANSMITTING:
             radio_transmit();
             break;

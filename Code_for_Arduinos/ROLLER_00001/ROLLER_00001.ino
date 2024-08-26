@@ -74,7 +74,7 @@ void setup() {
 void loop() {
     switch (self.state) {
         case RECEIVING:  // this case will be run until all serial data is received, up to 14 numbers
-            // blink_red_led(SLOW_BLINK);
+            blink_red_led(SLOW_BLINK);
             radio_receive();
             break;
             /*
