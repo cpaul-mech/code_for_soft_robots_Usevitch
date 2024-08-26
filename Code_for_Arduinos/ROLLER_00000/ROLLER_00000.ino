@@ -32,7 +32,7 @@ typedef struct Child {
     uint8_t reading_pipe_num;
 } Child;
 // data to compare the received data back against to see if it matches.
-int16_t tx_data[16] = {};
+int16_t tx_data[MAX_SERIAL_DATA_NUM + 1] = {};
 uint8_t tx_data_index = 0;
 /*Next we need to create a byte array which will
 represent the address, or the so called pipe through which the two modules will communicate.
@@ -202,9 +202,9 @@ void calculate_checksum() {
         }
     }
 
-    tx_data[tx_data_index++] = checksum;
+    tx_data[MAX_SERIAL_DATA_NUM] = checksum;
 
-    for (int i = 0; i < tx_data_index; i++) {
+    for (int i = 0; i < MAX_SERIAL_DATA_NUM + 1; i++) {
         Serial.print(tx_data[i]);
         Serial.print(", ");
     }
@@ -217,7 +217,6 @@ void calculate_checksum() {
 void radio_transmit() {
     if (!radio.available()) {
         digitalWrite(LED_PIN_GREEN, HIGH);
-        //delay(1000);
         radio.stopListening();
         uint8_t attempt = 0;
         bool transmission_complete = false;
@@ -229,21 +228,22 @@ void radio_transmit() {
                     radio.openWritingPipe(children[i].address);
                     if (radio.write(tx_data, sizeof(tx_data)) == false) {
                         transmission_complete = false;
-                        Serial.print("Fail");
                     } else {
                         children[i].transmission_received = true;
-                        reset_children_flags();
-                        Serial.print("Sent");
                     }
                 }
             }
             attempt++;
         }
 
+        radio.startListening();
+
         if (!transmission_complete) {
             self.return_to_transmitting = true;
         }
-        radio.startListening();
+        else {
+            reset_children_flags();
+        }
 
         digitalWrite(LED_PIN_GREEN, LOW);
 
@@ -264,7 +264,7 @@ void blink_red_led(int delay_time) {
 }
 
 void reset_children_flags() {
-    for (int i = 0; i < NUM_CHILDREN; i++) {
-        children[i].transmission_received = false;
+    for (int j = 0; j < NUM_CHILDREN; j++) {
+        children[j].transmission_received = false;
     }
 }

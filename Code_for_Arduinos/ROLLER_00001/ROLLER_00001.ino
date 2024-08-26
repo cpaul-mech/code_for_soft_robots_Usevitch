@@ -32,8 +32,8 @@ typedef struct Child {
     uint8_t reading_pipe_num;
 } Child;
 // data to compare the received data back against to see if it matches.
-int16_t tx_data[16] = {};
-int16_t rx_data[16] = {};
+int16_t tx_data[MAX_SERIAL_DATA_NUM + 1] = {};
+int16_t rx_data[MAX_SERIAL_DATA_NUM + 1] = {};
 //uint8_t tx_data_index = 0;
 /*Next we need to create a byte array which will
 represent the address, or the so called pipe through which the two modules will communicate.
@@ -65,6 +65,7 @@ void setup() {
 
     // Set tx_data to 0s
     memset(tx_data, 0, sizeof(tx_data));
+    memset(rx_data, 0, sizeof(rx_data));
 
     // Set LED pins high then low to show power on
     init_LEDs();
@@ -134,15 +135,16 @@ void radio_receive() {
     if (radio.available()) {
         digitalWrite(LED_PIN_GREEN, HIGH);
         radio.read(rx_data, sizeof(rx_data));
-        for (int i = 0; i < 16; i++) {
+        for (int i = 0; i < MAX_SERIAL_DATA_NUM + 1; i++) {
+            /*
             if (rx_data[i] == 0) {
                 break;
             }
-            else {
-                Serial.print(rx_data[i]);
-                Serial.print(", ");
-            }
+            */
+            Serial.print(rx_data[i]);
+            Serial.print(", ");
         }
+
         Serial.println();
         digitalWrite(LED_PIN_GREEN, LOW);
     }
