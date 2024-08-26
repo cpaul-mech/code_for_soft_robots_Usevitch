@@ -55,7 +55,7 @@ void radio_transmit();
 void blink_red_led(int delay_time);
 
 void setup() {
-    Serial.begin(9600);
+    Serial.begin(115200);
 
     init_radio();
 
@@ -72,6 +72,7 @@ void setup() {
 void loop() {
     switch (self.state) {
         case RECEIVING:  // this case will be run until all serial data is received, up to 14 numbers
+            blink_red_led(SLOW_BLINK);
             serial_receive();
             radio_receive();
             break;
@@ -108,8 +109,8 @@ void init_radio() {
     // Set the timeout and number of tries for the child to sent back an auto ack
     radio.setRetries(15, 15);
 
-    // Roller 0 should be prepared to transmit by default
-    radio.stopListening();
+    // All rollers are listening by default. Once the TRANSMITTING state is reached, it is set to stop listening
+    radio.startListening();
 }
 
 void init_LEDs() {
@@ -123,7 +124,6 @@ void init_LEDs() {
 }
 
 void serial_receive() {
-    blink_red_led(SLOW_BLINK);
     if (Serial.available()) {
         // reset tx_data array
         memset(tx_data, 0, sizeof(tx_data));
@@ -217,6 +217,7 @@ void calculate_checksum() {
 void radio_transmit() {
     if (!radio.available()) {
         digitalWrite(LED_PIN_GREEN, HIGH);
+        //delay(1000);
         radio.stopListening();
         uint8_t attempt = 0;
         bool transmission_complete = false;
@@ -228,8 +229,11 @@ void radio_transmit() {
                     radio.openWritingPipe(children[i].address);
                     if (radio.write(tx_data, sizeof(tx_data)) == false) {
                         transmission_complete = false;
+                        Serial.print("Fail");
                     } else {
                         children[i].transmission_received = true;
+                        reset_children_flags();
+                        Serial.print("Sent");
                     }
                 }
             }
@@ -256,5 +260,11 @@ void blink_red_led(int delay_time) {
         led_state = ~led_state;
         digitalWrite(LED_PIN_RED, led_state);
         past_time = millis();
+    }
+}
+
+void reset_children_flags() {
+    for (int i = 0; i < NUM_CHILDREN; i++) {
+        children[i].transmission_received = false;
     }
 }

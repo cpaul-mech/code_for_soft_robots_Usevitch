@@ -33,7 +33,8 @@ typedef struct Child {
 } Child;
 // data to compare the received data back against to see if it matches.
 int16_t tx_data[16] = {};
-uint8_t tx_data_index = 0;
+int16_t rx_data[16] = {};
+//uint8_t tx_data_index = 0;
 /*Next we need to create a byte array which will
 represent the address, or the so called pipe through which the two modules will communicate.
 We can change the value of this address to any 5 letter string and this enables to choose to
@@ -42,20 +43,20 @@ and the transmitter.*/
 // this roller is 00000, the master node or start node, has long range atennae. This one will start off the communication.
 // For addresses, the name convention is that the last digit is the number of the node in hex and the previous digit is the number of the parent in hex
 Roller self = {RECEIVING, false};
-Child child1 = {"00001", false, 1};
-Child children[] = {child1};
-const uint8_t NUM_CHILDREN = 1;
+Parent parent = {"00001", 0};
+//Child child1 = {"00001", false, 1};
+Child children[] = {};
+const uint8_t NUM_CHILDREN = 0;
 
 void init_radio();
 void init_LEDs();
-void calculate_checksum();
-void serial_receive();
+//void calculate_checksum();
 void radio_receive();
-void radio_transmit();
-void blink_led_unblocking(int delay_time);
+//void radio_transmit();
+void blink_red_led(int delay_time);
 
 void setup() {
-    Serial.begin(9600);
+    Serial.begin(115200);
 
     init_radio();
 
@@ -72,14 +73,16 @@ void setup() {
 void loop() {
     switch (self.state) {
         case RECEIVING:  // this case will be run until all serial data is received, up to 14 numbers
-            serial_receive();
+            //blink_red_led(SLOW_BLINK);
             radio_receive();
             break;
+            /*
         case CALC_CHECKSUM:
             calculate_checksum();
         case TRANSMITTING:
             radio_transmit();
             break;
+            */
     }
 }
 
@@ -97,6 +100,11 @@ void init_radio() {
         radio.openReadingPipe(children[i].reading_pipe_num, children[i].address);
     }
 
+    //Initialize parent
+    if (parent.address != nullptr) {
+        radio.openReadingPipe(parent.reading_pipe_num, parent.address);
+    }
+
     // Set power level to max for long distance communication
     radio.setPALevel(RF24_PA_MAX);
 
@@ -108,8 +116,8 @@ void init_radio() {
     // Set the timeout and number of tries for the child to sent back an auto ack
     radio.setRetries(15, 15);
 
-    // Roller 0 should be prepared to transmit by default
-    radio.stopListening();
+    // All rollers are listening by default. Once the TRANSMITTING state is reached, it is set to stop listening
+    radio.startListening();
 }
 
 void init_LEDs() {
@@ -122,63 +130,21 @@ void init_LEDs() {
     digitalWrite(LED_PIN_GREEN, LOW);  // LED is OFF
 }
 
-void serial_receive() {
-    blink_led_unblocking(SLOW_BLINK);
-    if (Serial.available()) {
-        // reset tx_data array
-        memset(tx_data, 0, sizeof(tx_data));
-        tx_data_index = 0;
-
-        // Turn on LEDs
-        digitalWrite(LED_PIN_RED, HIGH);
-        digitalWrite(LED_PIN_GREEN, HIGH);
-
-        // Get data from Serial
-        String incoming_data_str = Serial.readStringUntil('\n');  // Read until newline character (the resultant string does not include \n)
-        incoming_data_str.trim();                                 // Remove any leading or trailing whitespace
-
-        int start_index = 0;
-        int end_index = incoming_data_str.indexOf(',');
-
-        // Iterate through each substring in between ',' characters until end of string
-        while (end_index > 0) {
-            String number_substring = incoming_data_str.substring(start_index, end_index);  // grabs the substring at start_index inclusive and ends at end_index exclusive
-            int16_t number = number_substring.toInt();
-
-            tx_data[tx_data_index++] = number;
-
-            start_index = end_index + 1;
-            end_index = incoming_data_str.indexOf(',', start_index);
-
-            // If more data was sent in string than allowed for, break from the loop
-            if (tx_data_index == MAX_SERIAL_DATA_NUM) {
-                break;
-            }
-        }
-
-        // If maximum data has not been reached, then collect the last number from incoming_data_str
-        if (tx_data_index < MAX_SERIAL_DATA_NUM && start_index < incoming_data_str.length()) {
-            String number_substring = incoming_data_str.substring(start_index);  // grabs the substring at start_index inclusive till end of string
-            int16_t number = number_substring.toInt();
-
-            tx_data[tx_data_index++] = number;
-        }
-
-        // If data was correctly received, then transition to CALC_CHECKSUM
-        if (tx_data_index > 0) {
-            self.state = CALC_CHECKSUM;
-            self.return_to_transmitting = false; //This prevents the state machine from trying to submit old data
-        }
-
-        // Turn LEDs off
-        digitalWrite(LED_PIN_RED, LOW);
-        digitalWrite(LED_PIN_GREEN, LOW);
-    }
-}
-
 void radio_receive() {
     if (radio.available()) {
-        // Code
+        digitalWrite(LED_PIN_GREEN, HIGH);
+        radio.read(rx_data, sizeof(rx_data));
+        for (int i = 0; i < 16; i++) {
+            if (rx_data[i] == 0) {
+                break;
+            }
+            else {
+                Serial.print(rx_data[i]);
+                Serial.print(", ");
+            }
+        }
+        Serial.println();
+        digitalWrite(LED_PIN_GREEN, LOW);
     }
     if (self.return_to_transmitting == true) {
         self.return_to_transmitting = false;
@@ -186,6 +152,7 @@ void radio_receive() {
     }
 }
 
+/*
 void calculate_checksum() {
     int16_t checksum = 0;
 
@@ -216,6 +183,7 @@ void calculate_checksum() {
 
 void radio_transmit() {
     if (!radio.available()) {
+        digitalWrite(LED_PIN_GREEN, HIGH);
         radio.stopListening();
         uint8_t attempt = 0;
         bool transmission_complete = false;
@@ -240,13 +208,15 @@ void radio_transmit() {
         }
         radio.startListening();
 
+        digitalWrite(LED_PIN_GREEN, LOW);
+
     } else { //if radio is available, then switch to receiving, process that data, then transmit
         self.return_to_transmitting = true;
     }
     self.state = RECEIVING;
 }
-
-void blink_led_unblocking(int delay_time) {
+*/
+void blink_red_led(int delay_time) {
     static unsigned long past_time = millis();
     static uint8_t led_state = LOW;
     if (millis() - past_time > delay_time) {
