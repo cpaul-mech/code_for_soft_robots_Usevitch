@@ -146,9 +146,9 @@ void radio_receive() {
         radio.read(rx_data, sizeof(rx_data));
 
         if (rx_data[MAX_SERIAL_DATA_NUM] != prev_checksum) {  // not a duplicate entry
-            prev_checksum = rx_data[MAX_SERIAL_DATA_NUM];
             if (calculate_checksum(rx_data, MAX_SERIAL_DATA_NUM) != rx_data[MAX_SERIAL_DATA_NUM]) {
                 Serial.println("Checksum Error");
+                prev_checksum = rx_data[MAX_SERIAL_DATA_NUM];
                 //Request for data again
             } else {
                 Serial.println("No error");
