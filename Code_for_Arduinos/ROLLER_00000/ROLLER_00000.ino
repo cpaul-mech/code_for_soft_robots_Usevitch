@@ -21,6 +21,11 @@ typedef struct Roller {
     bool return_to_transmitting;
 } Roller;
 
+typedef struct Parent {
+    const uint8_t *address;
+    uint8_t reading_pipe_num;
+} Parent;
+
 typedef struct Child {
     const uint8_t *address;
     bool transmission_received;
@@ -47,7 +52,7 @@ void calculate_checksum();
 void serial_receive();
 void radio_receive();
 void radio_transmit();
-void blink_led_unblocking(int delay_time);
+void blink_red_led(int delay_time);
 
 void setup() {
     Serial.begin(9600);
@@ -118,7 +123,7 @@ void init_LEDs() {
 }
 
 void serial_receive() {
-    blink_led_unblocking(SLOW_BLINK);
+    blink_red_led(SLOW_BLINK);
     if (Serial.available()) {
         // reset tx_data array
         memset(tx_data, 0, sizeof(tx_data));
@@ -211,6 +216,7 @@ void calculate_checksum() {
 
 void radio_transmit() {
     if (!radio.available()) {
+        digitalWrite(LED_PIN_GREEN, HIGH);
         radio.stopListening();
         uint8_t attempt = 0;
         bool transmission_complete = false;
@@ -235,13 +241,15 @@ void radio_transmit() {
         }
         radio.startListening();
 
+        digitalWrite(LED_PIN_GREEN, LOW);
+
     } else { //if radio is available, then switch to receiving, process that data, then transmit
         self.return_to_transmitting = true;
     }
     self.state = RECEIVING;
 }
 
-void blink_led_unblocking(int delay_time) {
+void blink_red_led(int delay_time) {
     static unsigned long past_time = millis();
     static uint8_t led_state = LOW;
     if (millis() - past_time > delay_time) {

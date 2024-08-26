@@ -21,6 +21,11 @@ typedef struct Roller {
     bool return_to_transmitting;
 } Roller;
 
+typedef struct Parent {
+    const uint8_t *address;
+    uint8_t reading_pipe_num;
+} Parent;
+
 typedef struct Child {
     const uint8_t *address;
     bool transmission_received;
