@@ -48,7 +48,7 @@ const uint8_t NUM_CHILDREN = 1;
 
 void init_radio();
 void init_LEDs();
-void calculate_checksum();
+int16_t calculate_checksum(int16_t *data, uint8_t len);
 void serial_receive();
 void radio_receive();
 void radio_transmit();
@@ -77,7 +77,15 @@ void loop() {
             radio_receive();
             break;
         case CALC_CHECKSUM:
-            calculate_checksum();
+            tx_data[MAX_SERIAL_DATA_NUM] = calculate_checksum(tx_data, MAX_SERIAL_DATA_NUM);
+
+            for (int i = 0; i < MAX_SERIAL_DATA_NUM + 1; i++) {
+                Serial.print(tx_data[i]);
+                Serial.print(", ");
+            }
+
+            Serial.println();
+            self.state = TRANSMITTING;
         case TRANSMITTING:
             radio_transmit();
             break;
@@ -167,7 +175,7 @@ void serial_receive() {
         // If data was correctly received, then transition to CALC_CHECKSUM
         if (tx_data_index > 0) {
             self.state = CALC_CHECKSUM;
-            self.return_to_transmitting = false; //This prevents the state machine from trying to submit old data
+            self.return_to_transmitting = false;  // This prevents the state machine from trying to submit old data
         }
 
         // Turn LEDs off
@@ -186,32 +194,21 @@ void radio_receive() {
     }
 }
 
-void calculate_checksum() {
+int16_t calculate_checksum(int16_t *data, uint8_t len) {
     int16_t checksum = 0;
 
-    for (int i = 0; i < tx_data_index; i++) {
-        checksum += tx_data[i];
+    for (int i = 0; i < len; i++) {
+        checksum += (i % 3 + 1) * data[i];
         Serial.print(i);
         Serial.print(": ");
-        Serial.print(tx_data[i]);
+        Serial.print(data[i]);
 
-        if (i < tx_data_index - 1) {
-            Serial.print(", ");
-        } else {
-            Serial.println();
-        }
-    }
-
-    tx_data[MAX_SERIAL_DATA_NUM] = checksum;
-
-    for (int i = 0; i < MAX_SERIAL_DATA_NUM + 1; i++) {
-        Serial.print(tx_data[i]);
-        Serial.print(", ");
+        Serial.print(",");
     }
 
     Serial.println();
 
-    self.state = TRANSMITTING;
+    return checksum;
 }
 
 void radio_transmit() {
@@ -240,14 +237,13 @@ void radio_transmit() {
 
         if (!transmission_complete) {
             self.return_to_transmitting = true;
-        }
-        else {
+        } else {
             reset_children_flags();
         }
 
         digitalWrite(LED_PIN_GREEN, LOW);
 
-    } else { //if radio is available, then switch to receiving, process that data, then transmit
+    } else {  // if radio is available, then switch to receiving, process that data, then transmit
         self.return_to_transmitting = true;
     }
     self.state = RECEIVING;

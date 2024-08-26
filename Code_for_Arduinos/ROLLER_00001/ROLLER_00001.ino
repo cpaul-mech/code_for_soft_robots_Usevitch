@@ -34,7 +34,7 @@ typedef struct Child {
 // data to compare the received data back against to see if it matches.
 int16_t tx_data[MAX_SERIAL_DATA_NUM + 1] = {};
 int16_t rx_data[MAX_SERIAL_DATA_NUM + 1] = {};
-//uint8_t tx_data_index = 0;
+// uint8_t tx_data_index = 0;
 /*Next we need to create a byte array which will
 represent the address, or the so called pipe through which the two modules will communicate.
 We can change the value of this address to any 5 letter string and this enables to choose to
@@ -44,15 +44,15 @@ and the transmitter.*/
 // For addresses, the name convention is that the last digit is the number of the node in hex and the previous digit is the number of the parent in hex
 Roller self = {RECEIVING, false};
 Parent parent = {"00001", 0};
-//Child child1 = {"00001", false, 1};
+// Child child1 = {"00001", false, 1};
 Child children[] = {};
 const uint8_t NUM_CHILDREN = 0;
 
 void init_radio();
 void init_LEDs();
-//void calculate_checksum();
+int16_t calculate_checksum(int16_t *data, uint8_t len);
 void radio_receive();
-//void radio_transmit();
+// void radio_transmit();
 void blink_red_led(int delay_time);
 
 void setup() {
@@ -74,12 +74,20 @@ void setup() {
 void loop() {
     switch (self.state) {
         case RECEIVING:  // this case will be run until all serial data is received, up to 14 numbers
-            //blink_red_led(SLOW_BLINK);
+            // blink_red_led(SLOW_BLINK);
             radio_receive();
             break;
             /*
         case CALC_CHECKSUM:
-            calculate_checksum();
+            tx_data[MAX_SERIAL_DATA_NUM] = calculate_checksum();
+
+            for (int i = 0; i < MAX_SERIAL_DATA_NUM + 1; i++) {
+                Serial.print(tx_data[i]);
+                Serial.print(", ");
+            }
+
+    Serial.println();
+            self.state = TRANSMITTING;
         case TRANSMITTING:
             radio_transmit();
             break;
@@ -101,7 +109,7 @@ void init_radio() {
         radio.openReadingPipe(children[i].reading_pipe_num, children[i].address);
     }
 
-    //Initialize parent
+    // Initialize parent
     if (parent.address != nullptr) {
         radio.openReadingPipe(parent.reading_pipe_num, parent.address);
     }
@@ -132,20 +140,21 @@ void init_LEDs() {
 }
 
 void radio_receive() {
+    static int16_t prev_checksum = 20000;  // ridiculous number to start off the checksum
     if (radio.available()) {
         digitalWrite(LED_PIN_GREEN, HIGH);
         radio.read(rx_data, sizeof(rx_data));
-        for (int i = 0; i < MAX_SERIAL_DATA_NUM + 1; i++) {
-            /*
-            if (rx_data[i] == 0) {
-                break;
-            }
-            */
-            Serial.print(rx_data[i]);
-            Serial.print(", ");
-        }
 
-        Serial.println();
+        if (rx_data[MAX_SERIAL_DATA_NUM] != prev_checksum) {  // not a duplicate entry
+            prev_checksum = rx_data[MAX_SERIAL_DATA_NUM];
+            if (calculate_checksum(rx_data, MAX_SERIAL_DATA_NUM) != rx_data[MAX_SERIAL_DATA_NUM]) {
+                Serial.println("Checksum Error");
+                //Request for data again
+            } else {
+                Serial.println("No error");
+                //Send commands to motor and to everyone else
+            }
+        }
         digitalWrite(LED_PIN_GREEN, LOW);
     }
     if (self.return_to_transmitting == true) {
@@ -154,35 +163,16 @@ void radio_receive() {
     }
 }
 
-/*
-void calculate_checksum() {
+int16_t calculate_checksum(int16_t *data, uint8_t len) {
     int16_t checksum = 0;
 
-    for (int i = 0; i < tx_data_index; i++) {
-        checksum += tx_data[i];
-        Serial.print(i);
-        Serial.print(": ");
-        Serial.print(tx_data[i]);
-
-        if (i < tx_data_index - 1) {
-            Serial.print(", ");
-        } else {
-            Serial.println();
-        }
+    for (int i = 0; i < len; i++) {
+        checksum += (i % 3 + 1) * data[i];
     }
 
-    tx_data[tx_data_index++] = checksum;
-
-    for (int i = 0; i < tx_data_index; i++) {
-        Serial.print(tx_data[i]);
-        Serial.print(", ");
-    }
-
-    Serial.println();
-
-    self.state = TRANSMITTING;
+    return checksum;
 }
-
+/*
 void radio_transmit() {
     if (!radio.available()) {
         digitalWrite(LED_PIN_GREEN, HIGH);
