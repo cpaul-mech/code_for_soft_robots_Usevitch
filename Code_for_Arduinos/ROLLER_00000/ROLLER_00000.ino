@@ -47,6 +47,7 @@ void calculate_checksum();
 void serial_receive();
 void radio_receive();
 void radio_transmit();
+void blink_led_unblocking(int delay_time);
 
 void setup() {
     Serial.begin(9600);
@@ -117,6 +118,7 @@ void init_LEDs() {
 }
 
 void serial_receive() {
+    blink_led_unblocking(SLOW_BLINK);
     if (Serial.available()) {
         // reset tx_data array
         memset(tx_data, 0, sizeof(tx_data));
@@ -237,4 +239,14 @@ void radio_transmit() {
         self.return_to_transmitting = true;
     }
     self.state = RECEIVING;
+}
+
+void blink_led_unblocking(int delay_time) {
+    static unsigned long past_time = millis();
+    static uint8_t led_state = LOW;
+    if (millis() - past_time > delay_time) {
+        led_state = ~led_state;
+        digitalWrite(LED_PIN_RED, led_state);
+        past_time = millis();
+    }
 }
