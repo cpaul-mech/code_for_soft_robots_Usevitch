@@ -10,11 +10,22 @@
 RF24 radio(7, 8);               // CE, CSN
 
 // -------------------- VARIABLES ------------------- //
-enum Parent_state {
-    SERIAL_RECEIVE,
+enum State {
     TRANSMITTING,
-    RADIO_RECIEVE
-} parent_state;
+    RECEIVING,
+    CALC_CHECKSUM
+};
+
+typedef struct Roller {
+    State state;
+    bool return_to_transmitting;
+} Roller;
+
+typedef struct Child {
+    const uint8_t *address;
+    bool transmission_received;
+    uint8_t reading_pipe_num;
+} Child;
 // data to compare the received data back against to see if it matches.
 int16_t tx_data[16] = {};
 uint8_t tx_data_index = 0;
@@ -23,24 +34,27 @@ represent the address, or the so called pipe through which the two modules will 
 We can change the value of this address to any 5 letter string and this enables to choose to
 which receiver we will talk, so in our case we will have the same address at both the receiver
 and the transmitter.*/
-// this node is 00001, the master node or start node, has long range atennae. This one will start off the communication.
-const byte addresses[][6] = {"00000", "00001", "00002"};
-const byte *self = addresses[0];
-const byte *child1 = addresses[1];
-const byte *child2 = addresses[2];
+// this roller is 00000, the master node or start node, has long range atennae. This one will start off the communication.
+// For addresses, the name convention is that the last digit is the number of the node in hex and the previous digit is the number of the parent in hex
+Roller self = {RECEIVING, false};
+Child child1 = {"00001", false, 1};
+Child children[] = {child1};
+const uint8_t NUM_CHILDREN = 1;
 
 void init_radio();
 void init_LEDs();
+void calculate_checksum();
 void serial_receive();
+void radio_receive();
 void radio_transmit();
 
 void setup() {
     Serial.begin(9600);
 
-    //init_radio();
+    init_radio();
 
     // Set parent state to wait for data from serial
-    parent_state = SERIAL_RECEIVE;
+    self.state = RECEIVING;
 
     // Set tx_data to 0s
     memset(tx_data, 0, sizeof(tx_data));
@@ -50,13 +64,14 @@ void setup() {
 }
 
 void loop() {
-    switch (parent_state) {
-        case SERIAL_RECEIVE:  // this case will be run until all serial data is received.
-            // read in the number from the serial port and set the first element in transmit data to that number.
+    switch (self.state) {
+        case RECEIVING:  // this case will be run until all serial data is received, up to 14 numbers
             serial_receive();
+            radio_receive();
             break;
+        case CALC_CHECKSUM:
+            calculate_checksum();
         case TRANSMITTING:
-
             radio_transmit();
             break;
     }
@@ -68,15 +83,21 @@ void init_radio() {
     // This sets the radio frequency to 2476 MHz. This is the default value
     radio.setChannel(76);
 
-    // Open reading pipes to both children
-    radio.openReadingPipe(1, child1);
-    radio.openReadingPipe(2, child2);
+    // Sets data transfer rate to 1 megabits per sec
+    radio.setDataRate(RF24_1MBPS);
+
+    // Open reading pipes to all children
+    for (int i = 0; i < NUM_CHILDREN; i++) {
+        radio.openReadingPipe(children[i].reading_pipe_num, children[i].address);
+    }
 
     // Set power level to max for long distance communication
     radio.setPALevel(RF24_PA_MAX);
 
     // Open first writing pipe by default (to child1)
-    radio.openWritingPipe(child1);
+    if (NUM_CHILDREN > 0) {
+        radio.openWritingPipe(children[0].address);
+    }
 
     // Set the timeout and number of tries for the child to sent back an auto ack
     radio.setRetries(15, 15);
@@ -116,7 +137,6 @@ void serial_receive() {
         while (end_index > 0) {
             String number_substring = incoming_data_str.substring(start_index, end_index);  // grabs the substring at start_index inclusive and ends at end_index exclusive
             int16_t number = number_substring.toInt();
-            Serial.println(number);
 
             tx_data[tx_data_index++] = number;
 
@@ -129,19 +149,18 @@ void serial_receive() {
             }
         }
 
-        //If maximum data has not been reached, then collect the last number from incoming_data_str
+        // If maximum data has not been reached, then collect the last number from incoming_data_str
         if (tx_data_index < MAX_SERIAL_DATA_NUM && start_index < incoming_data_str.length()) {
             String number_substring = incoming_data_str.substring(start_index);  // grabs the substring at start_index inclusive till end of string
             int16_t number = number_substring.toInt();
-            Serial.println(number);
 
             tx_data[tx_data_index++] = number;
         }
 
-        //If data was correctly received, then transition to Transmitting
+        // If data was correctly received, then transition to CALC_CHECKSUM
         if (tx_data_index > 0) {
-            parent_state = TRANSMITTING;
-            Serial.println();
+            self.state = CALC_CHECKSUM;
+            self.return_to_transmitting = false; //This prevents the state machine from trying to submit old data
         }
 
         // Turn LEDs off
@@ -150,7 +169,17 @@ void serial_receive() {
     }
 }
 
-void radio_transmit() {
+void radio_receive() {
+    if (radio.available()) {
+        // Code
+    }
+    if (self.return_to_transmitting == true) {
+        self.return_to_transmitting = false;
+        self.state = TRANSMITTING;
+    }
+}
+
+void calculate_checksum() {
     int16_t checksum = 0;
 
     for (int i = 0; i < tx_data_index; i++) {
@@ -161,13 +190,51 @@ void radio_transmit() {
 
         if (i < tx_data_index - 1) {
             Serial.print(", ");
+        } else {
+            Serial.println();
         }
     }
 
-    Serial.println();
-    Serial.print("Checksum: ");
-    Serial.println(checksum);
+    tx_data[tx_data_index++] = checksum;
+
+    for (int i = 0; i < tx_data_index; i++) {
+        Serial.print(tx_data[i]);
+        Serial.print(", ");
+    }
+
     Serial.println();
 
-    parent_state = SERIAL_RECEIVE;
+    self.state = TRANSMITTING;
+}
+
+void radio_transmit() {
+    if (!radio.available()) {
+        radio.stopListening();
+        uint8_t attempt = 0;
+        bool transmission_complete = false;
+
+        while (!transmission_complete && attempt < 3) {
+            transmission_complete = true;
+            for (int i = 0; i < NUM_CHILDREN; i++) {
+                if (children[i].transmission_received == false) {
+                    radio.openWritingPipe(children[i].address);
+                    if (radio.write(tx_data, sizeof(tx_data)) == false) {
+                        transmission_complete = false;
+                    } else {
+                        children[i].transmission_received = true;
+                    }
+                }
+            }
+            attempt++;
+        }
+
+        if (!transmission_complete) {
+            self.return_to_transmitting = true;
+        }
+        radio.startListening();
+
+    } else { //if radio is available, then switch to receiving, process that data, then transmit
+        self.return_to_transmitting = true;
+    }
+    self.state = RECEIVING;
 }
