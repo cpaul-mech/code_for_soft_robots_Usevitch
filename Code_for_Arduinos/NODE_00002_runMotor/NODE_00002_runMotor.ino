@@ -379,7 +379,7 @@ void setup()
                                   // The level is super low now because the two modules are very close to each other.
   overall_state = CHILD;          // start here!!
   child_state = RECEIVING_1;      // start here!!
-  radio.startListening();
+  radio.startListening();   // comment just to change something
   pinMode(LED_PIN_RED, OUTPUT);
   pinMode(LED_PIN_GREEN, OUTPUT);
   digitalWrite(LED_PIN_RED, LOW);
