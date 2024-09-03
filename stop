@@ -1,0 +1,1371 @@
+[33mcommit 7a2f8ee6e6930cc97f3b694fc3c667c230c23a85[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mChris_Creations[m[33m, [m[1;31morigin/Chris_Creations[m[33m)[m
+Author: Christopher Paul <124709632+cpaul-mech@users.noreply.github.com>
+Date:   Mon Sep 2 17:58:14 2024 -0600
+
+    Learning how to use git on the command line
+
+[33mcommit 0bf0690eb7af4e2d5298b50cc820921b1b2db2d6[m
+Author: Christopher Paul <124709632+cpaul-mech@users.noreply.github.com>
+Date:   Sat Aug 24 18:49:30 2024 -0600
+
+    Update NODE_00001.ino
+
+[33mcommit 98e21dc3157ca24627d45566543b1fe616165fb4[m
+Author: Christopher Paul <124709632+cpaul-mech@users.noreply.github.com>
+Date:   Fri Aug 23 14:47:07 2024 -0600
+
+    Fixed the integer overflow direction error
+    
+    The variable "_DesiredPositionTicks" and "_CurrentPositionTicks" were not large enough on arduino's version of c. This caused an integer overflow error that resulted in the motor flipping direction and losing track of where zero is.
+
+[33mcommit d9947cc982eb17f6b816b7f66d8805d4672380d2[m
+Author: Christopher Paul <124709632+cpaul-mech@users.noreply.github.com>
+Date:   Wed Aug 21 16:27:16 2024 -0600
+
+    fixing some bugs
+    
+    Since I moved the DCMotorControl library to the Node_00002 folder for easier debugging and version control, I needed to fix some referencing bugs. This commit fixes those bugs.
+
+[33mcommit d134c3ef6612bbfda1e7b4025af6ace8b90e10e4[m
+Author: Christopher Paul <124709632+cpaul-mech@users.noreply.github.com>
+Date:   Wed Aug 21 15:44:20 2024 -0600
+
+    moved the DCMotorControl.cpp file
+    
+    moved the DCMotorControl header and .cpp file to facilitate easier debugging and more robust file changes across branches in Github.
+
+[33mcommit bdd7a38df5bc753cc55e565341c891a5ae14bcbb[m
+Author: Christopher Paul <124709632+cpaul-mech@users.noreply.github.com>
+Date:   Tue Aug 20 19:42:27 2024 -0600
+
+    partially working motor debugging
+    
+    Partially working code for printing the motor pwm output value (the one that isn't yet mapped from minimum_pwm to 255)
+
+[33mcommit fa80d1de4388c07c1beb920408b71f704bb3a45c[m
+Author: Christopher Paul <124709632+cpaul-mech@users.noreply.github.com>
+Date:   Wed Aug 14 21:19:42 2024 -0600
+
+    TicksPerInch variable corrected, weirdness persists
+    
+    I did a derivation for the TicksPerInch variable, I believe I have corrected it! The weirdness is that the robot appears to flip flop which side of the origin + and - are on, and randomly decides to not go super far when receiving large numbers.
+
+[33mcommit 8a2e8a6d2ab405a2b81e0c349096e3e2299bb0e1[m
+Merge: 44dfc0d e0fc768
+Author: Christopher Paul <124709632+cpaul-mech@users.noreply.github.com>
+Date:   Tue Aug 13 13:09:13 2024 -0600
+
+    Merge pull request #14 from cpaul-mech/main
+    
+    Merge pull request #13 from cpaul-mech/Chris_Creations
+
+[33mcommit e0fc768dc54d97c1c6d4d64fd142a63b57dd3cc0[m
+Merge: bdb7b73 44dfc0d
+Author: Christopher Paul <124709632+cpaul-mech@users.noreply.github.com>
+Date:   Tue Aug 13 13:08:31 2024 -0600
+
+    Merge pull request #13 from cpaul-mech/Chris_Creations
+    
+    Chris creations update main
+
+[33mcommit 44dfc0d581df7f9ee310812b43575c4c8fb5aa36[m
+Author: Christopher Paul <124709632+cpaul-mech@users.noreply.github.com>
+Date:   Tue Aug 13 13:07:45 2024 -0600
+
+    Update NODE_00002_runMotor.ino
+
+[33mcommit 1e444b98b60f09208e447914b21b88df5dffe947[m
+Author: Christopher Paul <124709632+cpaul-mech@users.noreply.github.com>
+Date:   Mon Aug 12 11:52:20 2024 -0600
+
+    getting my new laptop up to speed
+
+[33mcommit aa4276d40da2d919c32d94054980cf98314e5e94[m[33m ([m[1;32mChris_Creations-CP3-RealDeal-PC[m[33m)[m
+Author: cpaul-mech <cpaul.mech@gmail.com>
+Date:   Fri Aug 9 16:17:57 2024 -0600
+
+    trying to get the arduino to register a relative library
+
+[33mcommit 9cfc3afc9df54a0d85c4c1371daf42241ffb5dea[m
+Author: cpaul-mech <cpaul.mech@gmail.com>
+Date:   Tue Aug 6 15:43:29 2024 -0600
+
+    continuous commands to one roller working!!
+
+[33mcommit 4e5389e632a1e3b1bcec592d14a72a56dba38921[m
+Author: cpaul-mech <cpaul.mech@gmail.com>
+Date:   Mon Aug 5 16:19:33 2024 -0600
+
+    trying to get the code to repeat endlessly
+
+[33mcommit a1ff99e343ddfb6da4e25d44c1c0f535bb261030[m
+Author: cpaul-mech <cpaul.mech@gmail.com>
+Date:   Mon Aug 5 15:59:07 2024 -0600
+
+    Update NODE_00001.ino
+
+[33mcommit ac248e9e38b4db1750b37773a69d6f723c83f55c[m
+Author: cpaul-mech <cpaul.mech@gmail.com>
+Date:   Mon Aug 5 15:49:22 2024 -0600
+
+    Update NODE_00002_runMotor.ino
+
+[33mcommit 259b793c7a9af27ef69c57ffdc5fc7e65474476e[m
+Author: cpaul-mech <cpaul.mech@gmail.com>
+Date:   Sat Aug 3 16:21:18 2024 -0600
+
+    computer to roller 1 communication works!
+
+[33mcommit 03d3cdcc7fa93921c2bf7b92c3d45e405aa8c533[m
+Author: cpaul-mech <cpaul.mech@gmail.com>
+Date:   Fri Aug 2 16:12:23 2024 -0600
+
+    making the arduino receive serial commands
+
+[33mcommit afe85c5cfdab38ffe383998e8cd5c52382a0122c[m
+Author: cpaul-mech <cpaul.mech@gmail.com>
+Date:   Thu Aug 1 16:04:23 2024 -0600
+
+    Moving Annie's code and update node1
+
+[33mcommit b9287fa9e8387b325cbe4b1050ff970c4e444ff0[m
+Merge: bd0ff6f bdb7b73
+Author: Christopher Paul <124709632+cpaul-mech@users.noreply.github.com>
+Date:   Thu Aug 1 15:51:04 2024 -0600
+
+    Merge pull request #12 from cpaul-mech/main
+    
+    update Chris_creations with main
+
+[33mcommit bd0ff6f680803524cec0eb6995946660e4b1a61f[m
+Author: cpaul-mech <cpaul.mech@gmail.com>
+Date:   Thu Aug 1 15:49:16 2024 -0600
+
+    brief changes to arduino code
+
+[33mcommit bdb7b73828bd65e7c7095cfa98a7bc41ed847a3a[m
+Author: Annie O'Bryan <167576706+annieo29@users.noreply.github.com>
+Date:   Thu Aug 1 15:48:10 2024 -0600
+
+     Create Python-Arduino serial communication files
+
+[33mcommit 2b1ccbf74c46ca52efe5bceb66d34d58e2ea276e[m
+Merge: 46ce6c6 217e86d
+Author: Christopher Paul <124709632+cpaul-mech@users.noreply.github.com>
+Date:   Thu Aug 1 15:02:51 2024 -0600
+
+    Merge pull request #11 from cpaul-mech/Chris_Creations
+    
+    Chris creations merge with main.
+
+[33mcommit 217e86d8bcc597f37ddde9636e7917c8d568dc5e[m
+Merge: 51b0a4a 46ce6c6
+Author: Christopher Paul <124709632+cpaul-mech@users.noreply.github.com>
+Date:   Thu Aug 1 15:01:35 2024 -0600
+
+    Merge pull request #10 from cpaul-mech/main
+    
+    Merge pull request #9 from cpaul-mech/Chris_Creations
+
+[33mcommit 51b0a4ab65672d90d81b361733bbfc15bb75c5aa[m
+Author: cpaul-mech <cpaul.mech@gmail.com>
+Date:   Thu Aug 1 15:00:14 2024 -0600
+
+    further updates to roller 1 and roller 5
+    
+    Updating the phrasing of functions and adding support for controlling the motors.
+
+[33mcommit be4aae6d00201fce654d55e603fb6593f851c453[m
+Author: cpaul-mech <cpaul.mech@gmail.com>
+Date:   Wed Jul 31 19:25:51 2024 -0600
+
+    Updating other roller codes
+    
+    Updating the other roller codes with the timer library and motor setups, finished updating both roller 3 and roller 4.
+
+[33mcommit 10aa8d1a930d7d3671026e2947c0dca1dd8295dc[m
+Author: cpaul-mech <cpaul.mech@gmail.com>
+Date:   Wed Jul 31 12:37:05 2024 -0600
+
+    Update NODE_00002_runMotor.ino
+    
+    broke out child_RX1 state into it's own function for readability. Roller starts in Child_Receiving 1, and stays there. It checks for whether the motor has reached it's destination.
+
+[33mcommit 1ae46595bb9bcbcd4487b4d3167a20a744fb2b7b[m
+Author: cpaul-mech <cpaul.mech@gmail.com>
+Date:   Tue Jul 30 22:31:59 2024 -0600
+
+    Update NODE_00002_runMotor.ino
+    
+    Cleaning up a lot of the roller code,  testing to make sure that it still works
+
+[33mcommit 46ce6c67169a63feb427e846297379ef63a26047[m
+Merge: 2655664 4a4a89e
+Author: Christopher Paul <124709632+cpaul-mech@users.noreply.github.com>
+Date:   Tue Jul 30 22:23:26 2024 -0600
+
+    Merge pull request #9 from cpaul-mech/Chris_Creations
+    
+    Chris creations merge with main
+
+[33mcommit 4a4a89e814954b996029248ab5803a097346d109[m
+Merge: c5c870c 2655664
+Author: Christopher Paul <124709632+cpaul-mech@users.noreply.github.com>
+Date:   Tue Jul 30 22:20:33 2024 -0600
+
+    Merge pull request #8 from cpaul-mech/main
+    
+    Updating Chris Creations
+
+[33mcommit c5c870cacaeaf16b21b82f991dbd23159207d6b9[m
+Author: cpaul-mech <cpaul.mech@gmail.com>
+Date:   Mon Jul 29 13:30:09 2024 -0600
+
+    made rollers distinguishable
+
+[33mcommit b892f1855f9e34d9ea2d77704f8ba1fd83c44d27[m
+Author: cpaul-mech <cpaul.mech@gmail.com>
+Date:   Fri Jul 26 13:44:07 2024 -0600
+
+    Update NODE_00002_runMotor.ino
+
+[33mcommit 2655664df9138611e38f00561f33a9d533922a13[m
+Merge: 85fbe4c 5424f5f
+Author: Spencer Stowell <stowel22@byu.edu>
+Date:   Thu Jul 25 14:36:41 2024 -0600
+
+    Merge branch 'spencerSandbox' into 'main'
+
+[33mcommit 85fbe4c199430dddbb39139357315e8c699b370c[m
+Author: hisaacweaver <77761493+hisaacweaver@users.noreply.github.com>
+Date:   Thu Jul 25 14:27:26 2024 -0600
+
+    Update matlab_engine.md
+
+[33mcommit 80f516ecea4000ead00795890fb6ffde72053414[m
+Author: hisaacweaver <77761493+hisaacweaver@users.noreply.github.com>
+Date:   Thu Jul 25 14:25:55 2024 -0600
+
+    Update matlab_engine.md
+
+[33mcommit e0b63dd284b7ff0ddb383ccf270fa74ceae6fde1[m
+Author: hisaacweaver <77761493+hisaacweaver@users.noreply.github.com>
+Date:   Thu Jul 25 14:24:34 2024 -0600
+
+    Update matlab_engine.md
+
+[33mcommit a0acf5a26664433f394c52535bf23970c7926484[m
+Author: hisaacweaver <77761493+hisaacweaver@users.noreply.github.com>
+Date:   Thu Jul 25 13:07:04 2024 -0600
+
+    Create matlab_engine.md
+    
+    Instructions for setting up matlab engine
+
+[33mcommit 5424f5f6e717d61fa19e24a7c1006de3fed6fa01[m
+Author: Spencer Stowell <stowel22@byu.edu>
+Date:   Thu Jul 25 12:59:04 2024 -0600
+
+    Update active roller mass
+
+[33mcommit 221f2ab809236ef17d7747963babcb99497ce833[m
+Author: annieo29 <annie.obryan27@gmail.com>
+Date:   Mon Jul 22 13:20:42 2024 -0600
+
+    Condense solar array dynamics code
+
+[33mcommit f71a914f578302a81eae46ee44f1e770cc6acf67[m
+Author: spencerstowell <stowel22@byu.edu>
+Date:   Fri Jul 19 16:13:50 2024 -0600
+
+    Fix post-sim plots
+
+[33mcommit 668e5b84288e0fd4d6a5b9f00fd83389b300a426[m
+Author: spencerstowell <stowel22@byu.edu>
+Date:   Fri Jul 19 12:59:33 2024 -0600
+
+    Update animation parameters
+
+[33mcommit d0195cc66013759b86739657d18a83be03c8cf50[m
+Author: spencerstowell <stowel22@byu.edu>
+Date:   Fri Jul 19 12:55:47 2024 -0600
+
+    Condense crane code by factor of 10
+
+[33mcommit 402f6dec30a1eb0254da3269c6251962ddd43f87[m
+Author: spencerstowell <stowel22@byu.edu>
+Date:   Fri Jul 19 11:08:35 2024 -0600
+
+    Condense dynamics & constraints
+
+[33mcommit 0ba4ec7f642a58f6a1711457bd0cf7e135579d7a[m
+Author: spencerstowell <stowel22@byu.edu>
+Date:   Fri Jul 19 08:34:51 2024 -0600
+
+    Generalize crane f function
+
+[33mcommit abf46963bbd8827124ef8cc0e5f27ead0fcf6dd0[m
+Author: spencerstowell <stowel22@byu.edu>
+Date:   Fri Jul 19 08:20:52 2024 -0600
+
+    Generalize crane __init__
+
+[33mcommit 8a5c57f4f96ddcfb58226666f641d20d7b1f56af[m
+Author: annieo29 <annie.obryan27@gmail.com>
+Date:   Thu Jul 18 16:15:19 2024 -0600
+
+    Update gitignore
+
+[33mcommit e6bf1b4df5654b731399d8c45aa7ec0bb1a17ddc[m
+Author: Spencer Stowell <stowel22@byu.edu>
+Date:   Thu Jul 18 16:14:01 2024 -0600
+
+    Simplify dynamic arrays
+
+[33mcommit 7d46942c9b8f89d265bdc9786f0180596116801b[m
+Author: Spencer Stowell <stowel22@byu.edu>
+Date:   Thu Jul 18 10:56:47 2024 -0600
+
+    Resolve crane instability
+
+[33mcommit 7a9859025f65e4460a66bde7e00cb1513990f1f0[m
+Author: annieo29 <annie.obryan27@gmail.com>
+Date:   Wed Jul 17 15:41:09 2024 -0600
+
+    Create Crane dynamic model
+
+[33mcommit 33ecc4689453ce97d1e22786ea193b6c6447312b[m
+Author: Spencer Stowell <stowel22@byu.edu>
+Date:   Wed Jul 17 11:05:07 2024 -0600
+
+    Clean file structure
+
+[33mcommit 02708b0dd1dd4008816bb70953f043d6da15455e[m
+Author: Spencer Stowell <stowel22@byu.edu>
+Date:   Wed Jul 17 11:04:07 2024 -0600
+
+    Update README
+
+[33mcommit 04cd584eecccf4effd0e9eb733a3577a8d54819b[m
+Author: Spencer Stowell <stowel22@byu.edu>
+Date:   Tue Jul 16 15:24:29 2024 -0600
+
+    Create Solar Array dynamic model
+
+[33mcommit 44702d723ada4b8a054cbeb80320f715b286019f[m
+Author: Spencer Stowell <stowel22@byu.edu>
+Date:   Tue Jul 16 13:20:05 2024 -0600
+
+    Clean file structure
+
+[33mcommit aa493556c8372abc30dbbb56237c1b48eb3accb0[m
+Merge: 3ea57ee f783ff4
+Author: Spencer Stowell <stowel22@byu.edu>
+Date:   Mon Jul 15 16:20:19 2024 -0600
+
+    Bring 'annieSandbox' up to date
+
+[33mcommit 3ea57ee09295d5bb61ce8fd26b29f39665da9131[m
+Author: Spencer Stowell <stowel22@byu.edu>
+Date:   Mon Jul 15 16:18:48 2024 -0600
+
+    Tune parameters
+
+[33mcommit b4587644a0bd8ad99f88dd3712a14be890dafd15[m
+Author: Spencer Stowell <stowel22@byu.edu>
+Date:   Mon Jul 15 16:11:09 2024 -0600
+
+    Update sim with signalGenerators
+
+[33mcommit a08c3bf62636d6405a461519c6953ae68eef75f9[m
+Author: Spencer Stowell <stowel22@byu.edu>
+Date:   Mon Jul 15 16:06:41 2024 -0600
+
+    Update post-animation plots
+
+[33mcommit 73fdd3d3ac947395b5f4dc16419060d7842c6e15[m
+Author: Spencer Stowell <stowel22@byu.edu>
+Date:   Mon Jul 15 15:22:47 2024 -0600
+
+    Add function inputs to triangle simulation
+
+[33mcommit 34b79989a284e3090b124c6163472d7b74598706[m
+Author: Spencer Stowell <stowel22@byu.edu>
+Date:   Mon Jul 15 15:02:07 2024 -0600
+
+    Add images to README
+
+[33mcommit ccc36d8a2571e5b3bf7a977e211b2dc947d3e082[m
+Author: Spencer Stowell <stowel22@byu.edu>
+Date:   Mon Jul 15 15:01:53 2024 -0600
+
+    Fix import errors
+
+[33mcommit 3ca293d9453bfd8b254a4cea57696018134ba5bd[m
+Author: Spencer Stowell <stowel22@byu.edu>
+Date:   Mon Jul 15 15:00:55 2024 -0600
+
+    Update README
+
+[33mcommit e430f82d44e432b7f9bbee784abfd4763ee3d073[m
+Author: Spencer Stowell <stowel22@byu.edu>
+Date:   Mon Jul 15 15:00:44 2024 -0600
+
+    Clean gitignore
+
+[33mcommit 5eed39ef329e632ce8ca01a1bf1eddfe6d3f718a[m
+Author: Spencer Stowell <stowel22@byu.edu>
+Date:   Mon Jul 15 14:23:16 2024 -0600
+
+    Improve file structure
+
+[33mcommit b24fd2c774577fee320c60c1e93af1ec914b2d14[m
+Author: annieo29 <annie.obryan27@gmail.com>
+Date:   Mon Jul 15 14:07:48 2024 -0600
+
+    Add node numbering to visualizations
+
+[33mcommit 9b7fa146d2a1a7e057bdf69892fb2dc41c5171e3[m
+Author: Spencer Stowell <stowel22@byu.edu>
+Date:   Mon Jul 15 11:03:16 2024 -0600
+
+    Viscous friction model
+
+[33mcommit 0ddd2a8aa3193244187784a431ad9f0543fba1e1[m
+Author: cpaul-mech <cpaul.mech@gmail.com>
+Date:   Fri Jul 12 14:11:06 2024 -0600
+
+    corrected pin layouts
+
+[33mcommit be50f4d4cefde1562b3f3f010b8d5f06adf24aa0[m
+Author: Spencer Stowell <stowel22@byu.edu>
+Date:   Wed Jul 10 15:48:29 2024 -0600
+
+    Improve readability and line efficiency
+
+[33mcommit 7781db4f790335a1ac3c1f9fbf03eebc03830c8c[m
+Author: Spencer Stowell <stowel22@byu.edu>
+Date:   Wed Jul 10 15:09:47 2024 -0600
+
+    clarify gravity vector
+
+[33mcommit 6efcea9371113a219d6bdfaa04df83f0c70a1afb[m
+Author: Spencer Stowell <stowel22@byu.edu>
+Date:   Wed Jul 10 15:03:55 2024 -0600
+
+    Correct gravity vector
+
+[33mcommit bb6f1c96e4beac6d19f07f470067e57b0bdf9786[m
+Author: Spencer Stowell <stowel22@byu.edu>
+Date:   Wed Jul 10 14:12:45 2024 -0600
+
+    Update triangle dynamics readability
+
+[33mcommit 8ad39981dbbeefd6b11cb6c56e8b4b98ba0b3b78[m
+Author: Spencer Stowell <stowel22@byu.edu>
+Date:   Wed Jul 10 10:58:00 2024 -0600
+
+    Resolve line object warnings
+
+[33mcommit 82f24c111176d817ee7c6720051183a2cfdfc649[m
+Author: Spencer Stowell <stowel22@byu.edu>
+Date:   Wed Jul 10 09:48:38 2024 -0600
+
+    Fix dynamics bug
+
+[33mcommit b3a01dcb72c55d8e65129c731403456b2aea3e20[m
+Author: Spencer Stowell <stowel22@byu.edu>
+Date:   Wed Jul 10 09:48:20 2024 -0600
+
+    Fix unstable dynamics bug
+
+[33mcommit 396d06021ffa3784181b97dd73d705da48a921f5[m
+Author: Spencer Stowell <stowel22@byu.edu>
+Date:   Wed Jul 10 09:48:05 2024 -0600
+
+    Update triangle dynamics for readability
+
+[33mcommit 37b5ac64141b5f50c08bc44339c4490b807bd39a[m
+Merge: 849ee67 3edfdf1
+Author: Spencer Stowell <stowel22@byu.edu>
+Date:   Wed Jul 10 09:10:26 2024 -0600
+
+    Merge branch 'spencerSandbox' of https://github.com/cpaul-mech/code_for_soft_robots_Usevitch into spencerSandbox
+
+[33mcommit 849ee67ac0fe47c96aacaa9b8981d213390a6714[m
+Author: Spencer Stowell <stowel22@byu.edu>
+Date:   Wed Jul 10 09:10:22 2024 -0600
+
+    Update gitignore
+
+[33mcommit 3edfdf13cfed88586ec18ad7f0133b653e1554be[m
+Author: spencerstowell <stowel22@byu.edu>
+Date:   Mon Jul 8 15:35:57 2024 -0600
+
+    Increase readability
+
+[33mcommit 564fbf6c2f5f64654c5ac2af43fff712d7509830[m
+Author: spencerstowell <stowel22@byu.edu>
+Date:   Mon Jul 8 14:45:32 2024 -0600
+
+    Fix indexing and begin debug test
+
+[33mcommit 0b60bf249442e0756c4c6529de218c99a16d023b[m
+Author: annieo29 <annie.obryan27@gmail.com>
+Date:   Wed Jul 3 08:11:49 2024 -0600
+
+    Initial code for octahedron dynamic model
+
+[33mcommit b41b980471676edc6317c53d2fdbaee6ad5730ae[m
+Author: spencerstowell <stowel22@byu.edu>
+Date:   Mon Jun 24 22:40:56 2024 -0600
+
+    typo correction
+
+[33mcommit 54cad5e60af9e91fe40d7d2786ea17d0969c8432[m
+Author: cpaul-mech <cpaul.mech@gmail.com>
+Date:   Sat Jun 22 15:38:49 2024 -0600
+
+    Deleted redundant DirectionA and DirectionB pin Motor constructor call
+
+[33mcommit d275b421db09f2a6f16b2bcbefe1877fb7e49172[m
+Author: cpaul-mech <cpaul.mech@gmail.com>
+Date:   Sat Jun 22 15:38:06 2024 -0600
+
+    updated the motor_controller libraries
+
+[33mcommit e078c66ed2837fa25406e9e4179164b0ff99e81f[m
+Merge: e1fd760 7c40330
+Author: Christopher Paul <124709632+cpaul-mech@users.noreply.github.com>
+Date:   Sat Jun 22 14:42:34 2024 -0600
+
+    Merge pull request #7 from cpaul-mech/main
+    
+    Merge pull request #5 from cpaul-mech/Chris_Creations
+
+[33mcommit e1fd7602d92d3b145dbd69a64f3e0b0c8958cb3e[m
+Author: cpaul-mech <cpaul.mech@gmail.com>
+Date:   Sat Jun 22 14:38:00 2024 -0600
+
+    can I commit?
+
+[33mcommit 0edb0e4cbf3a8e9bb93e07b34b353f599e0afa5b[m
+Author: spencerstowell <stowel22@byu.edu>
+Date:   Fri Jun 14 08:28:43 2024 -0600
+
+    update ignored pycache
+
+[33mcommit 3c000b1fd448682ec8a2e524e579fc0b4a9e2d6b[m
+Author: spencerstowell <stowel22@byu.edu>
+Date:   Thu Jun 13 21:54:36 2024 -0600
+
+    Testing triangle dynamics
+
+[33mcommit 8fb00bc976b0789338e6748902cd294dd03caf6d[m
+Author: spencerstowell <stowel22@byu.edu>
+Date:   Thu Jun 13 21:33:28 2024 -0600
+
+    Initial working triangle model
+
+[33mcommit eb2b6c13d03e2b9151cbbdea42cdc7958514ef32[m
+Author: Spencer Stowell <stowel22@byu.edu>
+Date:   Thu Jun 13 16:47:17 2024 -0600
+
+    Initial truss dynamics
+
+[33mcommit ef271d409ae9447ee4d15e6440e24dccef5e242b[m
+Author: Spencer Stowell <stowel22@byu.edu>
+Date:   Fri Jun 7 10:59:32 2024 -0600
+
+    Initial dynamic model
+
+[33mcommit 5ecd0ebcad6340a5245ca288881bd5ebcce3898e[m
+Merge: 38a82f3 879c9e9
+Author: Spencer Stowell <stowel22@byu.edu>
+Date:   Tue Jun 4 08:24:54 2024 -0600
+
+    Merge branch 'spencerSandbox' of https://github.com/cpaul-mech/code_for_soft_robots_Usevitch into spencerSandbox
+
+[33mcommit 38a82f3cd90a54b37b33c401e884a02db99bca02[m
+Author: Spencer Stowell <stowel22@byu.edu>
+Date:   Tue Jun 4 08:24:51 2024 -0600
+
+    Initial node control
+
+[33mcommit 879c9e901a5131228601c002f931e1ea334a9ac7[m
+Merge: 636751b 7c40330
+Author: spencerstowell <122899135+spencerstowell@users.noreply.github.com>
+Date:   Tue Jun 4 08:23:32 2024 -0600
+
+    Merge pull request #6 from cpaul-mech/main
+    
+    Align Master + SpencerSandbox
+
+[33mcommit f783ff40868870b8281ea0524e625abacf10953f[m
+Author: annieo29 <annie.obryan27@gmail.com>
+Date:   Mon May 20 12:51:54 2024 -0600
+
+    Test
+
+[33mcommit d44620e87029f9c5310b73911763004fdda4ff0d[m
+Author: cpaul-mech <cpaul.mech@gmail.com>
+Date:   Fri May 17 15:56:05 2024 -0600
+
+    creating write to SD card functionality
+
+[33mcommit 36d8f45fb29f8e52bb2f642bf13843a6775042f4[m
+Author: cpaul-mech <cpaul.mech@gmail.com>
+Date:   Thu May 16 17:03:39 2024 -0600
+
+    Update bounce_back_rx.ino
+
+[33mcommit 636751b60e789b160148204e237a7e7fef4cd233[m
+Author: Spencer Stowell <stowel22@byu.edu>
+Date:   Wed May 15 11:13:51 2024 -0600
+
+    Update triangle animation
+
+[33mcommit 8f74ce593729d1096315dd72e1dc4c50610d1b79[m
+Author: annieo29 <annie.obryan27@gmail.com>
+Date:   Wed May 15 11:11:16 2024 -0600
+
+    Create python serial communication file
+
+[33mcommit aa7df4b5dd421a9beb2ba1c31da69fea86e37257[m
+Author: spencerstowell <stowel22@byu.edu>
+Date:   Wed May 15 09:58:03 2024 -0600
+
+    Python triangle kinematics tests
+
+[33mcommit 7c4033060e2cf2c3b317cd20190418511b780d98[m[33m ([m[1;31morigin/Henry's-Branch-1[m[33m, [m[1;31morigin/Eli-branch[m[33m)[m
+Merge: 256830f 4e6e395
+Author: Christopher Paul <124709632+cpaul-mech@users.noreply.github.com>
+Date:   Mon May 13 15:49:58 2024 -0600
+
+    Merge pull request #5 from cpaul-mech/Chris_Creations
+    
+    Creates new version of Node00002 code integrating motor running code into existing communication structure.
+
+[33mcommit 4e6e39574fe22e607d615f07aea7d9c8a9f5e2e5[m
+Author: cpaul-mech <cpaul.mech@gmail.com>
+Date:   Mon May 13 15:46:17 2024 -0600
+
+    verified motor can turn both directions
+
+[33mcommit f2e4a1203f5343b299a2035a93b58d07844056af[m
+Author: cpaul-mech <cpaul.mech@gmail.com>
+Date:   Thu May 9 16:54:40 2024 -0600
+
+    it will run to the desired position... negative
+    
+    The value that you specify, it will try to reach that... but instead its negative.
+
+[33mcommit 45c83751872785c0f871ef4e19761ac8bafb90f4[m
+Author: spencerstowell <stowel22@byu.edu>
+Date:   Wed May 8 16:52:17 2024 -0600
+
+    Create TCP Refinements
+
+[33mcommit 256830ffaf6c496bea077ad6ad342896d1e65f23[m
+Author: cpaul-mech <cpaul.mech@gmail.com>
+Date:   Wed May 8 16:23:51 2024 -0600
+
+    combined code working!!
+
+[33mcommit dad5a8329cedbe3f4d5209c5c7de0ba43051f644[m
+Author: cpaul-mech <cpaul.mech@gmail.com>
+Date:   Wed May 8 16:05:09 2024 -0600
+
+    combining the pinouts
+
+[33mcommit d43b46e0576d0ec6073c761c7340dc5602b86269[m
+Author: cpaul-mech <cpaul.mech@gmail.com>
+Date:   Wed May 8 14:34:38 2024 -0600
+
+    Managed to run the motor correctly
+    
+    I fixed the issue by commenting out an if statement checking for stalling in the run function. We will need to decide on another way to implement some kind of change
+
+[33mcommit d78d85deedede2b28578b79fc44d0e9037b1b825[m
+Merge: 0c51b53 ebf741f
+Author: spencerstowell <stowel22@byu.edu>
+Date:   Wed May 8 13:18:52 2024 -0600
+
+    Merge branch 'spencerSandbox' of github.com:cpaul-mech/code_for_soft_robots_Usevitch into spencerSandbox
+
+[33mcommit 0c51b536645d63e8d416f7202b3d0446b68959f8[m
+Author: spencerstowell <stowel22@byu.edu>
+Date:   Wed May 8 13:18:15 2024 -0600
+
+    Update TCP test file
+
+[33mcommit ebf741fa34bdd577a57053f2c71ee8b04537d450[m
+Author: Spencer Stowell <stowel22@byu.edu>
+Date:   Wed May 8 13:16:26 2024 -0600
+
+    Add new TCP test file for speed metrics
+
+[33mcommit aa21e1201e8c690ae6afdd267be98707212b99c9[m
+Merge: ca13295 9fdd2b9
+Author: cpaul-mech <cpaul.mech@gmail.com>
+Date:   Tue May 7 16:19:42 2024 -0600
+
+    Merge branch 'main' of https://github.com/cpaul-mech/code_for_soft_robots_Usevitch
+
+[33mcommit ca1329542c1351785e9d9aeb9aaecb663f12ec84[m
+Author: cpaul-mech <cpaul.mech@gmail.com>
+Date:   Tue May 7 16:19:40 2024 -0600
+
+    fixed bug with timers!!
+
+[33mcommit 7297f3166db4bc66037411267e1a47d815ec3921[m
+Author: spencerstowell <stowel22@byu.edu>
+Date:   Mon May 6 16:43:24 2024 -0600
+
+    Create MATLAB Toolbox tutorial
+
+[33mcommit 9fdd2b93247ac395c3bc8e67b3d94c9ae18963a2[m
+Author: spencerstowell <122899135+spencerstowell@users.noreply.github.com>
+Date:   Mon May 6 16:21:57 2024 -0600
+
+    Update README.md for RPi
+
+[33mcommit 932e3b42a031047b7f20f9dbfdedd6926ff58104[m
+Author: spencerstowell <122899135+spencerstowell@users.noreply.github.com>
+Date:   Mon May 6 16:21:37 2024 -0600
+
+    Update README.md to include RPi
+
+[33mcommit 7dafcb924253df59a8f0f610f1d85cac9d2c9426[m
+Merge: c647884 92a6559
+Author: spencerstowell <122899135+spencerstowell@users.noreply.github.com>
+Date:   Mon May 6 16:14:55 2024 -0600
+
+    Merge pull request #4 from cpaul-mech/spencerSandbox
+    
+    RPi Tutorials
+
+[33mcommit 92a6559fa2f2e79e2829952a940364c216cd8ea5[m
+Merge: 52d23ca c647884
+Author: spencerstowell <stowel22@byu.edu>
+Date:   Mon May 6 16:11:33 2024 -0600
+
+    Merge branch 'main' into spencerSandbox
+
+[33mcommit c647884134c4b45727e7f96a25e2b4398f70ef36[m
+Author: cpaul-mech <cpaul.mech@gmail.com>
+Date:   Fri May 3 16:18:24 2024 -0600
+
+    fixing links on code for arduinos readme
+    
+    This final edit for today allows the links on the README.md file within the Code for arduinos subfolder to be used on the github webpage
+
+[33mcommit 19c646a7b2c5c65d37dd1e45ef0b2e2a52a6c9db[m
+Author: cpaul-mech <cpaul.mech@gmail.com>
+Date:   Fri May 3 16:16:31 2024 -0600
+
+    Update code for arduinos README file
+
+[33mcommit 7149c144f78becd4279a984cf828436f123bfa42[m
+Author: cpaul-mech <cpaul.mech@gmail.com>
+Date:   Fri May 3 16:14:39 2024 -0600
+
+    Update README.md
+
+[33mcommit b656ac9e87ea0ff978853411c0aa96766d2b4b1a[m
+Author: cpaul-mech <cpaul.mech@gmail.com>
+Date:   Fri May 3 16:13:26 2024 -0600
+
+    update main README.md file in the repository
+
+[33mcommit 97d319a4a55349aabf882e44b291679e2da7feab[m
+Author: cpaul-mech <cpaul.mech@gmail.com>
+Date:   Fri May 3 15:49:55 2024 -0600
+
+    Update README.md
+
+[33mcommit e4d5111869be312eac78d6dcff4ed923fe1f511e[m
+Author: cpaul-mech <cpaul.mech@gmail.com>
+Date:   Fri May 3 15:49:06 2024 -0600
+
+    Update README.md
+
+[33mcommit 7e4c8fc393ec272d431c719586318755ed04e660[m
+Author: cpaul-mech <cpaul.mech@gmail.com>
+Date:   Fri May 3 15:48:29 2024 -0600
+
+    update image to png for use on webpage
+
+[33mcommit facc690db1a74ee47092e1efb57cc382d7c2f8de[m
+Author: cpaul-mech <cpaul.mech@gmail.com>
+Date:   Fri May 3 15:46:53 2024 -0600
+
+    update code for arduinos README file
+
+[33mcommit 52d23cadd8c01e55824bf773aa21d6a484925455[m
+Author: spencerstowell <stowel22@byu.edu>
+Date:   Fri May 3 15:44:47 2024 -0600
+
+    Start TCP tutorial
+
+[33mcommit 18f6ff0cfa4aa3621a9cd79692787759b3bfd479[m
+Author: cpaul-mech <cpaul.mech@gmail.com>
+Date:   Fri May 3 15:41:26 2024 -0600
+
+    add README to code for arduinos folder
+
+[33mcommit 2afff3963ecca5496dc709065d461ff5ad6666bc[m
+Author: spencerstowell <stowel22@byu.edu>
+Date:   Fri May 3 15:39:38 2024 -0600
+
+    Prep for tutorial
+
+[33mcommit 1803843348dcde4122e8c6b56596026540fbab8d[m
+Author: spencerstowell <stowel22@byu.edu>
+Date:   Fri May 3 15:33:59 2024 -0600
+
+    Update logos
+
+[33mcommit f8adbcef7d0efb12770d2bf8a96d0c2d5e0c8acf[m
+Author: cpaul-mech <cpaul.mech@gmail.com>
+Date:   Fri May 3 15:19:58 2024 -0600
+
+    more file restructuring
+
+[33mcommit 3721a007f32db9dcb5b38a7fd1ff9dfc5f5dbe67[m
+Author: cpaul-mech <cpaul.mech@gmail.com>
+Date:   Fri May 3 15:14:10 2024 -0600
+
+    restructuring the file tree
+
+[33mcommit cc58a08f0481b6ceee2707f8b77f4c7ea01b25bf[m
+Author: spencerstowell <stowel22@byu.edu>
+Date:   Fri May 3 14:26:15 2024 -0600
+
+    Improve RPi documentation
+
+[33mcommit 1ddad5a42f37b58aa587eaa8bc25ace1f0950c9d[m
+Author: cpaul-mech <cpaul.mech@gmail.com>
+Date:   Fri May 3 14:00:26 2024 -0600
+
+    Update encoder_test.ino
+
+[33mcommit b570318a2624ef09665df49a8f7ecd9a42e5e1d6[m
+Author: spencerstowell <stowel22@byu.edu>
+Date:   Fri May 3 10:25:25 2024 -0600
+
+    Create README
+
+[33mcommit 8ede774b6fad57fd5fe9de01b9b2253ec32d4b67[m
+Author: spencerstowell <stowel22@byu.edu>
+Date:   Fri May 3 10:20:59 2024 -0600
+
+    Create RPi Setup Tutorials
+
+[33mcommit a3a76b6a1db49e6e222e1f2204c6d7596f4eda26[m
+Author: Spencer Stowell <stowel22@byu.edu>
+Date:   Thu May 2 16:22:33 2024 -0600
+
+    Add Python files for RPi TCP & RF24 Comms
+
+[33mcommit 7c6b5aa69c1135a3909556421e3cf3ce797f1899[m
+Author: spencerstowell <stowel22@byu.edu>
+Date:   Thu May 2 16:17:14 2024 -0600
+
+    Create MATLAB TCP tests
+
+[33mcommit 926ee08acf338a82c59f54f50a8597dc5ac7a773[m
+Author: cpaul-mech <cpaul.mech@gmail.com>
+Date:   Thu May 2 14:23:39 2024 -0600
+
+    motor speed change
+
+[33mcommit fa91b226e80e15fea8bb2d6aa9afb2bcf0b8fcdd[m
+Author: cpaul-mech <cpaul.mech@gmail.com>
+Date:   Thu May 2 11:07:45 2024 -0600
+
+    got the encoder working with the timers!!
+    
+    I copied over the code from the encoder_test code and added in code from the Timer Library documentation on Github. Trying to debug issues with the motors and using encoder and the timer libraries.
+
+[33mcommit 4b0f308cdcdc3d1ea2bf79dea18807f5067dc2e6[m
+Author: cpaul-mech <cpaul.mech@gmail.com>
+Date:   Mon Apr 29 15:38:15 2024 -0600
+
+    corrected wire numbers and pin numbers
+
+[33mcommit 6008204d4e1a9f34f14b4cb6ce09d6a6c338c512[m
+Author: cpaul-mech <cpaul.mech@gmail.com>
+Date:   Mon Apr 29 13:59:31 2024 -0600
+
+    change to propreties.json
+
+[33mcommit db77f98fbba660dcba9998d468a325acaffbcde1[m
+Author: cpaul-mech <cpaul.mech@gmail.com>
+Date:   Fri Apr 19 13:42:50 2024 -0600
+
+    added all dynamics files
+
+[33mcommit 40702bc05c147444ded21a2c58d7f6fd2956e194[m
+Author: cpaul-mech <cpaul.mech@gmail.com>
+Date:   Thu Apr 11 11:55:43 2024 -0600
+
+    finally the old files compile!!
+
+[33mcommit 340665e8ea342a25c33413255a4318be784844df[m
+Merge: dc9223c c42f92b
+Author: cpaul-mech <cpaul.mech@gmail.com>
+Date:   Wed Apr 10 15:56:07 2024 -0600
+
+    Merge branch 'main' of https://github.com/cpaul-mech/code_for_soft_robots_Usevitch
+
+[33mcommit dc9223c23e60860ccbce3fc50863c4d3db49f741[m
+Author: cpaul-mech <cpaul.mech@gmail.com>
+Date:   Wed Apr 10 15:56:05 2024 -0600
+
+    trying to run the original code with the changes I used before
+
+[33mcommit c42f92b8ecb62c4fad208e405825e86210807ed3[m
+Author: hisaacweaver <77761493+hisaacweaver@users.noreply.github.com>
+Date:   Wed Apr 10 11:24:26 2024 -0600
+
+    Extra constraints
+
+[33mcommit ff6348c72bc4a68e1784877f16b17c9714814549[m
+Author: cpaul-mech <cpaul.mech@gmail.com>
+Date:   Sun Apr 7 00:05:43 2024 -0600
+
+    trying to understnad interrupts
+
+[33mcommit d37bff64815e62a5c140f21449e6b8ac2dde8a59[m
+Author: cpaul-mech <cpaul.mech@gmail.com>
+Date:   Sat Apr 6 23:57:01 2024 -0600
+
+    I'm testing the enocder library's functionality with arduino
+
+[33mcommit 5118c1cd3f81c620753e20fe718e3545e410317c[m
+Merge: b8eef1c e55c87d
+Author: cpaul-mech <cpaul.mech@gmail.com>
+Date:   Mon Mar 18 21:55:40 2024 -0600
+
+    Merge branch 'main' of https://github.com/cpaul-mech/code_for_soft_robots_Usevitch
+
+[33mcommit b8eef1ce6012a258b5a517d5e703a0ab73ec6f4a[m
+Author: cpaul-mech <cpaul.mech@gmail.com>
+Date:   Mon Mar 18 21:55:38 2024 -0600
+
+    motor_control_working_with_old_arduinos
+
+[33mcommit e55c87ddc8b24092a4acc3c4ca7181844b2c2572[m
+Author: Nathan Usevitch <nusevitch@gmail.com>
+Date:   Wed Jan 31 08:47:40 2024 -0700
+
+    Add files via upload
+
+[33mcommit 372f01df624b070f5ebf7b4e674968afa1c490a0[m
+Author: Nathan Usevitch <nusevitch@gmail.com>
+Date:   Tue Jan 30 20:35:37 2024 -0700
+
+    Add files via upload
+    
+    Rotated the crane video
+
+[33mcommit 06db802aacb3294b908b153e233320af0702c296[m
+Author: hisaacweaver <77761493+hisaacweaver@users.noreply.github.com>
+Date:   Tue Jan 30 10:32:26 2024 -0700
+
+    Added crane robot builder file
+    
+    To be rotated
+
+[33mcommit 8290b1b03cdc1ce33266b723419f40de4ce851d3[m
+Author: cpaul-mech <cpaul.mech@gmail.com>
+Date:   Mon Jan 8 13:29:46 2024 -0700
+
+    update
+
+[33mcommit 7b3c3b3b923dc93b4b1dcbfa2a0db6c5027affb9[m
+Author: cpaul-mech <cpaul.mech@gmail.com>
+Date:   Fri Dec 15 13:12:07 2023 -0700
+
+    Update MorphTestMotorControl_EDITED.ino
+
+[33mcommit cc7ee4e9fbb5c86c40b3199ee51c4f5688fc79d7[m
+Author: cpaul-mech <cpaul.mech@gmail.com>
+Date:   Fri Dec 15 12:34:40 2023 -0700
+
+    Deep in the weeds abt timers in Arduino
+    
+    The previous code used a special kind of Timer Interrupt, that we can't use on an arduino. So instead we will be substituting in the TimerInterrupt class to regulate the run command
+
+[33mcommit f692a2692e7181b6f51014f3db8fc0a553c67829[m
+Author: cpaul-mech <cpaul.mech@gmail.com>
+Date:   Fri Dec 15 11:40:30 2023 -0700
+
+    Add TimerInterrupt library and include Timer Library setup
+
+[33mcommit fcaa1d2918a833b21f694e092a02a008aadb60f0[m
+Author: cpaul-mech <cpaul.mech@gmail.com>
+Date:   Sat Dec 9 23:16:23 2023 -0700
+
+    Rudimentary PID Loop is working
+    
+    I edited the DCMotorControl.h and DCMotorControl.cpp files on our research group teams to work with two direction pins rather than one direction pin.
+
+[33mcommit 810e292a5982476c70a712ada631e7504730780d[m
+Author: cpaul-mech <cpaul.mech@gmail.com>
+Date:   Fri Dec 8 18:06:22 2023 -0700
+
+    trying to get the motor_controller working
+
+[33mcommit b2a611b60c8aff1e50828caaf516b57b2ac182f5[m
+Author: cpaul-mech <cpaul.mech@gmail.com>
+Date:   Wed Dec 6 14:16:54 2023 -0700
+
+    Create basic_motor_test.ino
+
+[33mcommit 11e9255c8e978839283ebfcbf63fd1a4e9f7b5f5[m
+Author: cpaul-mech <cpaul.mech@gmail.com>
+Date:   Wed Dec 6 13:58:33 2023 -0700
+
+    trying to get matlab functionality online
+
+[33mcommit 002fb590a8036f0e297b68bf273ad30f11ca59e6[m
+Merge: 334ac98 cef9257
+Author: Christopher Paul <124709632+cpaul-mech@users.noreply.github.com>
+Date:   Thu Nov 30 01:34:32 2023 -0700
+
+    Merge pull request #3 from cpaul-mech/5_node_configuration
+    
+    5 node configuration
+
+[33mcommit cef9257e0e3184fc8086c071ec48aef4a939db49[m
+Author: cpaul-mech <cpaul.mech@gmail.com>
+Date:   Sat Nov 25 20:59:12 2023 -0700
+
+    long range test_configuration
+
+[33mcommit 284d5f5ba38ef7787e6bc3fbad0c500d768d1667[m
+Author: cpaul-mech <cpaul.mech@gmail.com>
+Date:   Sat Nov 25 20:27:03 2023 -0700
+
+    replaced timing with 1000 ms
+
+[33mcommit 1055ecd92ee3e6e81648d2c501253e9f65d661ce[m
+Author: cpaul-mech <cpaul.mech@gmail.com>
+Date:   Sat Nov 25 20:00:41 2023 -0700
+
+    further enhancements to readability parent-child
+
+[33mcommit e110e53dfbc03976fc62d5a56fbfe0246764451e[m
+Author: cpaul-mech <cpaul.mech@gmail.com>
+Date:   Sat Nov 25 19:57:31 2023 -0700
+
+    created easier to read parent-child relationships
+
+[33mcommit 6ca761fa11a3ac3d42f457783613c37aadf89dfc[m
+Author: cpaul-mech <cpaul.mech@gmail.com>
+Date:   Sat Nov 25 19:25:38 2023 -0700
+
+    created files to edit for each of the nodes
+
+[33mcommit 750db8c9feaf74e191a8143677198beff176ec5f[m
+Author: cpaul-mech <cpaul.mech@gmail.com>
+Date:   Sat Nov 25 19:18:30 2023 -0700
+
+    Update Start_node.ino
+
+[33mcommit 334ac98e8c221a6482b8fa2bf49fa9b7fb1f7be1[m
+Author: cpaul-mech <cpaul.mech@gmail.com>
+Date:   Sat Nov 25 19:10:08 2023 -0700
+
+    Update Start_node.ino
+
+[33mcommit 8eb4861bbca5520a2245471ce5c359c2d54401b5[m
+Author: cpaul-mech <cpaul.mech@gmail.com>
+Date:   Sat Nov 25 19:08:46 2023 -0700
+
+    Update End_node.ino
+
+[33mcommit d156230a887e033e104f4791a0a20aba45673753[m
+Author: cpaul-mech <cpaul.mech@gmail.com>
+Date:   Sat Nov 25 18:29:48 2023 -0700
+
+    Update Middle_node.ino
+
+[33mcommit 415d7bc7dce0f577ba6a2790dc52d18b52d1eede[m
+Merge: 7ac662e d25b322
+Author: Christopher Paul <124709632+cpaul-mech@users.noreply.github.com>
+Date:   Sat Nov 25 18:26:05 2023 -0700
+
+    Merge pull request #2 from cpaul-mech/commenting_out_Serial
+    
+    Revert "commented out most Serial Print statements"
+
+[33mcommit d25b322511c6217361d29659ac7442217f2fce67[m
+Merge: 113171b 7ac662e
+Author: Christopher Paul <124709632+cpaul-mech@users.noreply.github.com>
+Date:   Sat Nov 25 18:25:28 2023 -0700
+
+    Merge branch 'main' into commenting_out_Serial
+
+[33mcommit 113171b2128656a2c348924ed9ff8da8149eb408[m
+Author: cpaul-mech <cpaul.mech@gmail.com>
+Date:   Sat Nov 25 00:01:41 2023 -0700
+
+    Revert "commented out most Serial Print statements"
+    
+    This reverts commit 03e1f397dbcd162d9d2c97cb2038568e28d0e3ff.
+
+[33mcommit 7ac662e12b089b5126d32d8578864c9068d506c0[m
+Author: cpaul-mech <cpaul.mech@gmail.com>
+Date:   Fri Nov 24 23:57:53 2023 -0700
+
+    Update End_node.ino
+
+[33mcommit 324396b572f5a8c7980498f0f4311e4038827cd9[m
+Author: cpaul-mech <cpaul.mech@gmail.com>
+Date:   Fri Nov 24 23:48:09 2023 -0700
+
+    removed most Serial Print statements
+
+[33mcommit a10c5e29ed7d3bc6fa3cfb98871b54e6ea8dcc77[m
+Author: cpaul-mech <cpaul.mech@gmail.com>
+Date:   Fri Nov 24 23:46:36 2023 -0700
+
+    commented out most serial print statements
+
+[33mcommit 03e1f397dbcd162d9d2c97cb2038568e28d0e3ff[m
+Author: cpaul-mech <cpaul.mech@gmail.com>
+Date:   Fri Nov 24 23:43:51 2023 -0700
+
+    commented out most Serial Print statements
+
+[33mcommit d517e711729e6b2f951af1515c42476ca05eff57[m
+Author: cpaul-mech <cpaul.mech@gmail.com>
+Date:   Fri Nov 24 23:40:49 2023 -0700
+
+    format End_node.ino
+
+[33mcommit 1b3055f46d0a490aff018016e946c95171750b5c[m
+Author: cpaul-mech <cpaul.mech@gmail.com>
+Date:   Fri Nov 24 23:40:18 2023 -0700
+
+    changes to formatting
+
+[33mcommit b6fff80e17f5ef1405c750de618a95a09f0469e5[m
+Author: cpaul-mech <cpaul.mech@gmail.com>
+Date:   Fri Nov 24 23:36:22 2023 -0700
+
+    cleaning up middle node code
+
+[33mcommit 477c116abd6b6c15ce70775c9ae16b7c1ce0c42a[m
+Author: cpaul-mech <cpaul.mech@gmail.com>
+Date:   Fri Nov 24 23:28:20 2023 -0700
+
+    middle node now independent
+    
+    There is no longer any reliance on a pre-defined array of integers to compare incoming arrays against. This means any error will be allowed to propogate
+
+[33mcommit 61b1f2797b9f3839f5f0492c637e777a90cad6b5[m
+Author: cpaul-mech <cpaul.mech@gmail.com>
+Date:   Fri Nov 24 23:14:12 2023 -0700
+
+    transmit_array is now global const variable
+
+[33mcommit a3345dd2fdd7fb4f5a92dd3c653db916665e8df7[m
+Author: cpaul-mech <cpaul.mech@gmail.com>
+Date:   Fri Nov 24 23:05:26 2023 -0700
+
+    renaming functions to match other programs
+    
+    Standardizing function names across the nodes
+
+[33mcommit ce970aef50575e7c646c6ab1f1aa883a29694863[m
+Author: cpaul-mech <cpaul.mech@gmail.com>
+Date:   Fri Nov 24 22:47:06 2023 -0700
+
+    WORKING MIDDLE NODE!!!
+
+[33mcommit 7d9f5be560041ea421964913717dc40331d33652[m
+Author: cpaul-mech <cpaul.mech@gmail.com>
+Date:   Fri Nov 24 16:51:36 2023 -0700
+
+    almost ready for first test
+
+[33mcommit 07890b332695c4cf855299409754f8cc60e4499b[m
+Author: cpaul-mech <cpaul.mech@gmail.com>
+Date:   Fri Nov 24 16:43:09 2023 -0700
+
+    making the middle_node work
+    
+    Currently it now has both the codes and works like the child node
+    704 5141
+
+[33mcommit 80ab43e24dbdb6cd35c96451f2bba1769b9f5c45[m
+Author: cpaul-mech <cpaul.mech@gmail.com>
+Date:   Fri Nov 24 16:04:36 2023 -0700
+
+    Update Middle_node.ino
+
+[33mcommit b55ac9ec550ce62f50f88b38d6c55aa2790e66da[m
+Author: cpaul-mech <cpaul.mech@gmail.com>
+Date:   Wed Nov 22 11:05:04 2023 -0700
+
+    starting middle node
+
+[33mcommit 81bda9a32c62e313656d393589e68fa61f79a979[m
+Author: cpaul-mech <cpaul.mech@gmail.com>
+Date:   Wed Nov 22 10:08:53 2023 -0700
+
+    creating new files, more documentation updates
+
+[33mcommit 7497d9eed46b978f360178c6906d3a065ea06537[m
+Author: cpaul-mech <cpaul.mech@gmail.com>
+Date:   Wed Nov 22 09:51:34 2023 -0700
+
+    working Parent and child node architectures
+
+[33mcommit e59274f956c508c6dcd1df047b333fd723b13327[m
+Author: cpaul-mech <cpaul.mech@gmail.com>
+Date:   Tue Nov 21 16:59:32 2023 -0700
+
+    changes to power level
+
+[33mcommit 627d5946074aa6a7971ff49794de209a02dc393d[m
+Author: cpaul-mech <cpaul.mech@gmail.com>
+Date:   Sun Nov 19 02:05:49 2023 -0700
+
+    started on the green_LED stuff, see the onenote
+
+[33mcommit daf1c4f11f67f02f2aace624e51cd8f80fb22fdc[m
+Author: cpaul-mech <cpaul.mech@gmail.com>
+Date:   Sun Nov 19 01:35:25 2023 -0700
+
+    added green LED to show when radio is TX versus RX
+
+[33mcommit 0e63a3ed191e678745f0a0b868c4881594f2518a[m
+Author: cpaul-mech <cpaul.mech@gmail.com>
+Date:   Sun Nov 19 01:06:52 2023 -0700
+
+    created new faster response
+
+[33mcommit 27a0e5918d58b4830665164394693745108619be[m
+Author: cpaul-mech <cpaul.mech@gmail.com>
+Date:   Thu Nov 16 17:59:34 2023 -0700
+
+    some light testing with the tx code
+
+[33mcommit 9207df9e028828e6d1891fa30e8ce72b6b6a76b9[m
+Author: cpaul-mech <cpaul.mech@gmail.com>
+Date:   Mon Nov 13 13:54:49 2023 -0700
+
+    brief changes, R_X seems to work
+
+[33mcommit 8dab70ffea02bda7c1c105d71de1f5236b4dadc8[m
+Author: cpaul-mech <cpaul.mech@gmail.com>
+Date:   Mon Nov 13 11:48:33 2023 -0700
+
+    transmitting int array
+    
+    Trying to implement an int array transmission in the bounce_back_tx
+
+[33mcommit a353fca217496861516a9f04995e55871d67ed06[m
+Merge: 414e597 0538b05
+Author: Christopher Paul <124709632+cpaul-mech@users.noreply.github.com>
+Date:   Sat Oct 28 23:39:59 2023 -0600
+
+    Merge branch 'main' into chris_debugging
+
+[33mcommit 414e597ba3d1903a022775b2dcbf2ca2457ee928[m
+Author: cpaul-mech <cpaul.mech@gmail.com>
+Date:   Sat Oct 28 23:38:44 2023 -0600
+
+    Update bounce_back_tx.ino
+
+[33mcommit 1c5bc4614e0dce9ac33ae94c58ca4f44bc3f4798[m
+Author: cpaul-mech <cpaul.mech@gmail.com>
+Date:   Sat Oct 28 23:25:41 2023 -0600
+
+    quick_changes
+
+[33mcommit 7ddd38e0ecded82cc20af9cfbf18b09465712698[m
+Author: cpaul-mech <cpaul.mech@gmail.com>
+Date:   Sat Oct 28 23:22:54 2023 -0600
+
+    standardizing blink length
+
+[33mcommit 3531191f6695ea5a9c7a920125bfa915705d30ac[m
+Author: cpaul-mech <cpaul.mech@gmail.com>
+Date:   Sat Oct 28 23:18:36 2023 -0600
+
+    small_difference
+
+[33mcommit 32c398a268baed68f84c691bea6f570ca9edeac2[m
+Author: cpaul-mech <cpaul.mech@gmail.com>
+Date:   Sat Oct 28 23:17:48 2023 -0600
+
+    WORKING!!!
+
+[33mcommit 8355f6c5d71b6694f7fc0f13a3f3390dc79b00ac[m
+Author: cpaul-mech <cpaul.mech@gmail.com>
+Date:   Sat Oct 28 22:56:16 2023 -0600
+
+    the state machine is working!!
+
+[33mcommit 4f3fe066242b80e20ee909b2560528ae6a2665f8[m
+Author: cpaul-mech <cpaul.mech@gmail.com>
+Date:   Sat Oct 28 22:41:53 2023 -0600
+
+    I figured something out!!!
+    
+    the bounce_tx.ino file works!!
+
+[33mcommit f590b675311a3db75a88b78f25f17796631b3841[m
+Merge: d52ba7c ae41f2a
+Author: cpaul-mech <cpaul.mech@gmail.com>
+Date:   Sat Oct 28 22:17:19 2023 -0600
+
+    Merge branch 'chris_debugging' of https://github.com/cpaul-mech/code_for_soft_robots_Usevitch into chris_debugging
+
+[33mcommit d52ba7c9ee778c61ac05696a0803cc49782322e3[m
+Author: cpaul-mech <cpaul.mech@gmail.com>
+Date:   Sat Oct 28 22:16:42 2023 -0600
+
+    other_changes
+
+[33mcommit ae41f2a4033a5e0950ade7dc37e4516c84cb9d95[m
+Author: Christopher Paul <124709632+cpaul-mech@users.noreply.github.com>
+Date:   Sat Oct 28 22:08:30 2023 -0600
+
+    Update with printed lines of text.
+
+[33mcommit da4f95c346369f3fac8b069bb22a952159383da3[m
+Author: cpaul-mech <cpaul.mech@gmail.com>
+Date:   Sat Oct 28 16:21:20 2023 -0600
+
+    create arduino.json
+
+[33mcommit 3a27b13972143424de9a0605fbd45f00291dbadf[m
+Author: cpaul-mech <cpaul.mech@gmail.com>
+Date:   Sat Oct 28 15:49:34 2023 -0600
+
+    Create .gitignore
+
+[33mcommit 0538b05987293827be9bff4c1616a1ca5e634788[m
+Author: cpaul-mech <cpaul.mech@gmail.com>
+Date:   Sat Oct 28 15:45:06 2023 -0600
+
+    quick change
+
+[33mcommit d81c42b855bd5d077d4e9c582beb63cf28ee366c[m
+Author: Christopher Paul <124709632+cpaul-mech@users.noreply.github.com>
+Date:   Sat Oct 28 15:40:06 2023 -0600
+
+    add arduino code
+
+[33mcommit 957acc1bc6bb45f85778ba81fa3131c1da8eed47[m
+Author: Christopher Paul <124709632+cpaul-mech@users.noreply.github.com>
+Date:   Sat Oct 28 15:39:09 2023 -0600
+
+    Initial commit
